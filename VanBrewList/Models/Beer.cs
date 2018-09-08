@@ -3,20 +3,29 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace VanBrewList.Models
 {
     public class Beer
     {
-        [Required]
-        public string name { get; set; }
-
-        public string style { get; set; }
-
-        public int abv { get; set; }
+        [BsonId]
+        public ObjectId _id { get; set; }
 
         [Required]
-        public Brewery brewedBy { get; set; }
+        [BsonElement("Name")]
+        public string Name { get; set; }
+
+        [BsonElement("Style")]
+        public string Style { get; set; }
+
+        [BsonElement("Abv")]
+        public int Abv { get; set; }
+
+        [Required]
+        [BsonElement("Brewery")]
+        public Brewery BrewedBy { get; set; }
 
     }
 }

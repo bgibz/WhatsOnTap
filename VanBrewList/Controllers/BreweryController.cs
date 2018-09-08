@@ -32,8 +32,11 @@ namespace VanBrewList.Controllers
         // GET: Brewery/Details/5
         public ActionResult Details(string id)
         {
+
+            var brewId = new ObjectId(id);
+
             var breweries = db.GetCollection<Brewery>("breweries");
-            Brewery brewery = breweries.Find(b => b._id == id).FirstOrDefault();
+            var brewery = breweries.Find(b => b._id == brewId).FirstOrDefault();
 
             return View("Detail", brewery);
         }
@@ -51,7 +54,8 @@ namespace VanBrewList.Controllers
             try
             {
                 // TODO: Add insert logic here
-
+                var breweries = db.GetCollection<BsonDocument>("breweries");
+                
                 return RedirectToAction("Index");
             }
             catch
@@ -61,9 +65,14 @@ namespace VanBrewList.Controllers
         }
 
         // GET: Brewery/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            var brewId = new ObjectId(id);
+
+            var breweries = db.GetCollection<Brewery>("breweries");
+            var brewery = breweries.Find(b => b._id == brewId).FirstOrDefault();
+
+            return View(brewery);
         }
 
         // POST: Brewery/Edit/5
