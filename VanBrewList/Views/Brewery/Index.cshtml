@@ -29,8 +29,7 @@
             @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item._id }) |
-            @Html.ActionLink("Details", "Details", new { name=item.Name, address = item.Address })
+            @Html.ActionLink("Details", "Details", new { id=item._id })
         </td>
     </tr>
 }

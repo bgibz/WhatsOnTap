@@ -14,18 +14,18 @@ namespace VanBrewList.Models
         public ObjectId _id { get; set; }
 
         [Required]
-        [BsonElement("Name")]
+        [BsonElement("name")]
         public string Name { get; set; }
 
-        [BsonElement("Style")]
+        [BsonElement("style")]
         public string Style { get; set; }
 
-        [BsonElement("Abv")]
-        public int Abv { get; set; }
+        [BsonElement("abv")]
+        public string Abv { get; set; }
 
         [Required]
-        [BsonElement("Brewery")]
-        public Brewery BrewedBy { get; set; }
+        [BsonElement("url")]
+        public string Url { get; set; }
 
     }
 }

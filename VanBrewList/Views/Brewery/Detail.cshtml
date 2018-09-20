@@ -4,31 +4,38 @@
     ViewBag.Title = "View";
 }
 
-<h2>View</h2>
+<h2>@Model.Name</h2>
 
 <div>
-    <h4>Brewery</h4>
+    <h5>@Model.Address</h5>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-    </dl>
+    <div class="container">
+        <div class="col-md-6">
+            <h4>Tasting Room</h4>
+            <table class="table table-striped">
+                @foreach (var beer in Model.TastingRoom)
+                {
+                    <tr>
+                        <td>@beer.Name</td>
+                        <td>@beer.Style</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h4>Growler Fills</h4>
+            <table class="table table-striped">
+                @foreach (var beer in Model.Growlers)
+                {
+                    <tr>
+                        <td>@beer.Name</td>
+                        <td>@beer.Style</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Breweries", "Index")
 </p>

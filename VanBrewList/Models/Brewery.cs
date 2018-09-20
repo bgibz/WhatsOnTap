@@ -15,13 +15,15 @@ namespace VanBrewList.Models
         public ObjectId _id { get; set; }
 
         [Required]
-        [BsonElement("Name")]
+        [BsonElement("name")]
         public string Name { get; set;}
-        [BsonElement("Address")]
+        [BsonElement("address")]
         public string Address { get; set; }
-        [BsonElement("Growlers")]
+        [BsonElement("url")]
+        public string Url { get; set; }
+        [BsonElement("growlers")]
         public ICollection<Beer> Growlers { get; set; }
-        [BsonElement("TastingRoom")]
+        [BsonElement("tasting_room")]
         public ICollection<Beer> TastingRoom { get; set; }
     }
 }
