@@ -3,39 +3,49 @@
 @{
     ViewBag.Title = "View";
 }
+<br />
+<div class="container">
+    <h2 class="page-header">@Model.Name</h2>
 
-<h2>@Model.Name</h2>
-
+    <h5 class="page-header">@Model.Address</h5>
+</div>
 <div>
-    <h5>@Model.Address</h5>
     <hr />
     <div class="container">
-        <div class="col-md-6">
-            <h4>Tasting Room</h4>
-            <table class="table table-striped">
-                @foreach (var beer in Model.TastingRoom)
-                {
-                    <tr>
-                        <td>@beer.Name</td>
-                        <td>@beer.Style</td>
-                    </tr>
-                }
-            </table>
-        </div>
-        <div class="col-md-6">
-            <h4>Growler Fills</h4>
-            <table class="table table-striped">
-                @foreach (var beer in Model.Growlers)
-                {
-                    <tr>
-                        <td>@beer.Name</td>
-                        <td>@beer.Style</td>
-                    </tr>
-                }
-            </table>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Tasting Room</h4>
+                <table class="table table-striped">
+                    @foreach (var beer in Model.TastingRoom)
+                    {
+                        <tr>
+                            <td>@beer.Name</td>
+                            <td>@beer.Style</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h4>Growler Fills</h4>
+                <table class="table table-striped">
+                    @foreach (var beer in Model.Growlers)
+                    {
+                        <tr>
+                            <td>@beer.Name</td>
+                            <td>@beer.Style</td>
+                        </tr>
+                    }
+                </table>
+            </div>
         </div>
     </div>
 </div>
-<p>
-    @Html.ActionLink("Breweries", "Index")
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h5>
+                @Html.ActionLink("Back to Brewery List", "Index")
+            </h5>
+        </div>
+    </div>
+</div>

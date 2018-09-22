@@ -1,14 +1,13 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 0px;
     padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
-
 
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -23,4 +22,16 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.jumbotron {
+    background-image: url('../img/tap_dark.jpg');
+    background-color: darkgrey;
+    background-size: cover;
+    min-height: 400px;
+}
+
+.page-header {
+    padding-left: 5px;
+    padding-right:5px;
 }

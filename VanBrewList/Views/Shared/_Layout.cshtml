@@ -16,17 +16,18 @@
 
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="nav navbar-nav">
-                <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
                 <li class="nav-item">@Html.ActionLink("Breweries", "Index", "Brewery", null, new { @class = "nav-link" })</li>
             </ul>
         </div>
     </nav>
     
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - PlowIndustries Ltd.</p>
+            <div class="text-center">
+                <p>&copy; @DateTime.Now.Year - PlowIndustries Ltd.</p>
+            </div>
         </footer>
     </div>
 
