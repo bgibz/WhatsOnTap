@@ -179,7 +179,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\pint.svg" />
+    <Content Include="img\stout.svg" />
     <Content Include="img\tap_dark.jpg" />
+    <Content Include="img\wheat.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -199,8 +202,6 @@
     <Content Include="img\ipa.jpg" />
     <Content Include="img\mug.jpg" />
     <Content Include="img\pint.jpg" />
-    <Content Include="img\stout.jpg" />
-    <Content Include="img\wheat.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

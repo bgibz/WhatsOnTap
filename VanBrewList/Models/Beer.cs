@@ -27,5 +27,34 @@ namespace VanBrewList.Models
         [BsonElement("url")]
         public string Url { get; set; }
 
+        public string Img { get; set; }
+
+        public void setImg()
+        {
+            string lStyle = Style.ToLower();
+            string lName = Name.ToLower();
+            
+            if (lStyle.Contains("porter") || lName.Contains("porter"))
+            {
+                Img = "../../img/stout.svg";
+            }
+            else if (lStyle.Contains("hefe") || lName.Contains("hefe") || lStyle.Contains("wheat") || lName.Contains("wheat"))
+            {
+                Img = "../../img/wheat.svg";
+            }
+            else if (lStyle.Contains("ipa") || lName.Contains("ipa"))
+            {
+                Img = "../../img/ipa.jpg";
+            }
+            else if (lStyle.Contains("ale") || lName.Contains("ale"))
+            {
+                Img = "../../img/mug.jpg";
+            }
+            else
+            {
+                Img = "../../img/pint.svg";
+            }
+
+        }
     }
 }

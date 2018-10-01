@@ -15,10 +15,11 @@
         <div class="row">
             <div class="col-md-6">
                 <h4>Tasting Room</h4>
-                <table class="table table-striped">
+                <table class="table table">
                     @foreach (var beer in Model.TastingRoom)
                     {
                         <tr>
+                            <td>@Html.Partial("_glassware", beer)</td>
                             <td>@beer.Name</td>
                             <td>@beer.Style</td>
                         </tr>
@@ -27,10 +28,11 @@
             </div>
             <div class="col-md-6">
                 <h4>Growler Fills</h4>
-                <table class="table table-striped">
+                <table class="table table">
                     @foreach (var beer in Model.Growlers)
                     {
                         <tr>
+                            <td>@Html.Partial("_glassware", beer)</td>
                             <td>@beer.Name</td>
                             <td>@beer.Style</td>
                         </tr>

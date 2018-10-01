@@ -37,6 +37,14 @@ namespace VanBrewList.Controllers
 
             var breweries = db.GetCollection<Brewery>("breweries");
             var brewery = breweries.Find(b => b._id == brewId).FirstOrDefault();
+            foreach(Beer b in brewery.Growlers)
+            {
+                b.setImg();
+            }
+            foreach(Beer b in brewery.TastingRoom)
+            {
+                b.setImg();
+            }
 
             return View("Detail", brewery);
         }
