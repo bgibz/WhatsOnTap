@@ -44,11 +44,11 @@ namespace VanBrewList.Models
             }
             else if (lStyle.Contains("ipa") || lName.Contains("ipa"))
             {
-                Img = "../../img/ipa.jpg";
+                Img = "../../img/ipa.svg";
             }
             else if (lStyle.Contains("ale") || lName.Contains("ale"))
             {
-                Img = "../../img/mug.jpg";
+                Img = "../../img/mug.svg";
             }
             else
             {

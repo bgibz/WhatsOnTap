@@ -179,6 +179,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\ipa.svg" />
+    <Content Include="img\mug.svg" />
     <Content Include="img\pint.svg" />
     <Content Include="img\stout.svg" />
     <Content Include="img\tap_dark.jpg" />
@@ -199,9 +201,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="img\ipa.jpg" />
-    <Content Include="img\mug.jpg" />
-    <Content Include="img\pint.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
