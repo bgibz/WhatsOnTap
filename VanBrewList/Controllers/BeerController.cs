@@ -5,27 +5,35 @@ using System.Web;
 using System.Web.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using VanBrewList.Models;
+using VanBrewList.Services;
 
 namespace VanBrewList.Controllers
 {
     public class BeerController : Controller
     {
 
-        private IMongoDatabase db;
+        private MongoService mongoService;
 
         public BeerController()
         {
-            string uri = "mongodb://vanbrewuser:VbDB18@ds018538.mlab.com:18538/vanbrewalpha";
-            var client = new MongoClient(uri);
-            this.db = client.GetDatabase("vanbrewalpha");
+            this.mongoService = new MongoService();
         }
 
         // GET: Beer
-        public ActionResult Index()
+        public ActionResult Growlers()
         {
+            var beers = mongoService.getGrowlers();
 
+            return View(beers);
+        }
 
-            return View();
+        // GET: Beer
+        public ActionResult TastingRooms()
+        {
+            var beers = mongoService.getTastingRooms();
+
+            return View(beers);
         }
 
         // GET: Beer/Details/5

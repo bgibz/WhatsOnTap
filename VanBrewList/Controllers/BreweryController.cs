@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VanBrewList.Models;
+using VanBrewList.Services;
 using MongoDB.Driver;
 using MongoDB.Bson;
 
@@ -12,19 +13,20 @@ namespace VanBrewList.Controllers
     public class BreweryController : Controller
     {
         private IMongoDatabase db;
+        private MongoService mongoService;
 
         public BreweryController()
         {
             string uri = "mongodb://vanbrewuser:VbDB18@ds018538.mlab.com:18538/vanbrewalpha";
             var client = new MongoClient(uri);
             this.db = client.GetDatabase("vanbrewalpha");
+            this.mongoService = new MongoService();
         }
 
         // GET: Brewery
         public ActionResult Index()
         {
-            var breweries = db.GetCollection<Brewery>("breweries");
-            ICollection<Brewery> brewList = breweries.Find(_ => true).ToList();
+            ICollection<Brewery> brewList = mongoService.GetBreweries();
 
             return View("Index", brewList);
         }
@@ -32,11 +34,7 @@ namespace VanBrewList.Controllers
         // GET: Brewery/Details/5
         public ActionResult Details(string id)
         {
-
-            var brewId = new ObjectId(id);
-
-            var breweries = db.GetCollection<Brewery>("breweries");
-            var brewery = breweries.Find(b => b._id == brewId).FirstOrDefault();
+            var brewery = mongoService.GetBrewery(id);
             foreach(Beer b in brewery.Growlers)
             {
                 b.setImg();
