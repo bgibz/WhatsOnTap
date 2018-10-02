@@ -170,6 +170,7 @@
     <Compile Include="Models\Beer.cs" />
     <Compile Include="Models\Brewery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MongoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -217,6 +218,8 @@
     <Content Include="Views\Brewery\Detail.cshtml" />
     <Content Include="Views\Brewery\Edit.cshtml" />
     <Content Include="Views\Shared\_glassware.cshtml" />
+    <Content Include="Views\Beer\Growlers.cshtml" />
+    <Content Include="Views\Beer\TastingRooms.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

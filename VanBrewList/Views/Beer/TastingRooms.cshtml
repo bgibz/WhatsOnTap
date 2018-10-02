@@ -1,0 +1,49 @@
+﻿@model IEnumerable<VanBrewList.Models.Beer>
+
+@{
+    ViewBag.Title = "Tasting Rooms";
+}
+<div class="container-fluid">
+    <br />
+    <h2>Tasting Rooms - On Tap</h2>
+
+    <p>Check out which beers are currently available in tasting rooms near you</p>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Style)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Abv)
+        </th>
+        <th>
+            Brewery
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Style)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abv)
+        </td>
+        <td>
+            @Html.ActionLink(item.Brewery.Name, "Details", "Brewery", new { id = item.Brewery._id}, null)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

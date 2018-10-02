@@ -31,11 +31,11 @@ textarea {
     min-height: 400px;
 }
 
-.timg {
-    background-color: white;
-}
-
 .list-img {
     height: 40px;
     width: 40px;
+}
+
+h6 {
+   color: slategrey
 }

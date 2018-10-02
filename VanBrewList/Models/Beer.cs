@@ -15,12 +15,14 @@ namespace VanBrewList.Models
 
         [Required]
         [BsonElement("name")]
+        [Display(Name = "Beer")]
         public string Name { get; set; }
 
         [BsonElement("style")]
         public string Style { get; set; }
 
         [BsonElement("abv")]
+        [Display(Name = "ABV")]
         public string Abv { get; set; }
 
         [Required]
@@ -28,6 +30,8 @@ namespace VanBrewList.Models
         public string Url { get; set; }
 
         public string Img { get; set; }
+
+        public Brewery Brewery { get; set; }
 
         public void setImg()
         {
