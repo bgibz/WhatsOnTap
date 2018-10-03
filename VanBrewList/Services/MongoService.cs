@@ -71,5 +71,33 @@ namespace VanBrewList.Services
 
             return beers;
         }
+
+        public UpdateResult updateBrewery(string id, Brewery brewery)
+        {
+            var brewId = new ObjectId(id);
+            var collection = db.GetCollection<Brewery>("breweries");
+
+            var filter = Builders<Brewery>.Filter.Eq("_id", brewId);
+            var update = Builders<Brewery>.Update.Set("address", brewery.Address)
+                .Set("name", brewery.Name)
+                .Set("url", brewery.Url);
+
+            return collection.UpdateOne(filter, update);
+        }
+
+        public bool checkBrewName(string name)
+        {
+            var collection = db.GetCollection<Brewery>("breweries");
+            var check = collection.Find(b => b.Name == name).FirstOrDefault();
+
+            if (check != null) return false;
+            return true;
+        }
+
+        public void createBrewery(Brewery brewery)
+        {
+            var collection = db.GetCollection<Brewery>("breweries");
+            collection.InsertOne(brewery);
+        }
     }
 }

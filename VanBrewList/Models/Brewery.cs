@@ -22,8 +22,8 @@ namespace VanBrewList.Models
         [BsonElement("url")]
         public string Url { get; set; }
         [BsonElement("growlers")]
-        public ICollection<Beer> Growlers { get; set; }
+        public List<Beer> Growlers { get; set; }
         [BsonElement("tasting_room")]
-        public ICollection<Beer> TastingRoom { get; set; }
+        public List<Beer> TastingRoom { get; set; }
     }
 }

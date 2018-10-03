@@ -220,6 +220,7 @@
     <Content Include="Views\Shared\_glassware.cshtml" />
     <Content Include="Views\Beer\Growlers.cshtml" />
     <Content Include="Views\Beer\TastingRooms.cshtml" />
+    <Content Include="Views\Brewery\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
