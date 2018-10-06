@@ -105,21 +105,32 @@ namespace VanBrewList.Controllers
             }
         }
 
-        // GET: Brewery/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Brewery/Delete
+        public ActionResult Delete(string id)
         {
-            return View();
+            var brewery = mongoService.GetBrewery(id);
+
+            return View(brewery);
         }
 
-        // POST: Brewery/Delete/5
+        // POST: Brewery/Delete
         [HttpPost]
-        public ActionResult Delete(FormCollection collection)
+        public ActionResult Delete(string id, Brewery brewery)
         {
             try
             {
-                // TODO: Add delete logic here
+                var result = mongoService.deleteBrewery(id);
 
-                return RedirectToAction("Index");
+                if (result.DeletedCount > 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["Error"] = "Something went wrong, failed to delete.";
+
+                    return View();
+                }
             }
             catch
             {

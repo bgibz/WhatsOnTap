@@ -99,5 +99,15 @@ namespace VanBrewList.Services
             var collection = db.GetCollection<Brewery>("breweries");
             collection.InsertOne(brewery);
         }
+
+        public DeleteResult deleteBrewery(string id)
+        {
+            var brewId = new ObjectId(id);
+            var collection = db.GetCollection<Brewery>("breweries");
+
+            var filter = Builders<Brewery>.Filter.Eq("_id", brewId);
+            var delete = collection.DeleteOne(filter);
+            return delete;
+        }
     }
 }
