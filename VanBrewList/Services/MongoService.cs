@@ -21,6 +21,17 @@ namespace VanBrewList.Services
             this.db = client.GetDatabase("vanbrewalpha");
         }
 
+        public IMongoDatabase getContext()
+        {
+            return this.db;
+        }
+
+        public IMongoCollection<Admin> getAdminTable()
+        {
+            var collection = db.GetCollection<Admin>("user");
+            return collection;
+        }
+
         public ICollection<Brewery> GetBreweries()
         {
             var collection = db.GetCollection<Brewery>("breweries");

@@ -1,0 +1,40 @@
+﻿@model VanBrewList.Models.Admin
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Admin Login</h2>
+<hr />
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username)
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Username)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password)
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.Password)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Login" class="btn btn-default" />
+                    <p class="text-danger">@TempData["Error"]</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
