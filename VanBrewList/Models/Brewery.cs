@@ -25,5 +25,9 @@ namespace VanBrewList.Models
         public List<Beer> Growlers { get; set; }
         [BsonElement("tasting_room")]
         public List<Beer> TastingRoom { get; set; }
+        [BsonElement("last_updated")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime LastUpdated { get; set; }
+
     }
 }
