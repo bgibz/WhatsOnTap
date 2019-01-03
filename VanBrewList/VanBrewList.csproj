@@ -161,6 +161,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Authorize\BrewAuthorize.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BeerController.cs" />
     <Compile Include="Controllers\BreweryController.cs" />

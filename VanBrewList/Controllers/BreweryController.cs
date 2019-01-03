@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using VanBrewList.Models;
 using VanBrewList.Services;
+using VanBrewList.Authorize;
 using MongoDB.Driver;
 using MongoDB.Bson;
 
@@ -44,6 +45,7 @@ namespace VanBrewList.Controllers
         }
 
         // GET: Brewery/Create
+        [BrewAuthorize]
         public ActionResult Create()
         {
             return View();
@@ -51,6 +53,7 @@ namespace VanBrewList.Controllers
 
         // POST: Brewery/Create
         [HttpPost]
+        [BrewAuthorize]
         public ActionResult Create(Brewery brewery)
         {
             if (!mongoService.checkBrewName(brewery.Name))
@@ -73,6 +76,7 @@ namespace VanBrewList.Controllers
         }
 
         // GET: Brewery/Edit/id
+        [Authorize]
         public ActionResult Edit(string id)
         {
             var brewery = mongoService.GetBrewery(id);
@@ -82,6 +86,7 @@ namespace VanBrewList.Controllers
 
         // POST: Brewery/Edit/id
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(string id, Brewery brewery)
         {
             try
@@ -106,6 +111,7 @@ namespace VanBrewList.Controllers
         }
 
         // GET: Brewery/Delete
+        [BrewAuthorize]
         public ActionResult Delete(string id)
         {
             var brewery = mongoService.GetBrewery(id);
@@ -115,6 +121,7 @@ namespace VanBrewList.Controllers
 
         // POST: Brewery/Delete
         [HttpPost]
+        [BrewAuthorize]
         public ActionResult Delete(string id, Brewery brewery)
         {
             try

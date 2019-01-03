@@ -31,7 +31,7 @@ namespace VanBrewList.Controllers
                 var admin = users.Find(u => u.Username == user.Username && u.Password == user.Password).FirstOrDefault();
                 if (admin != null)
                 {
-                    Session["User"] = admin.Username;
+                    Session["Username"] = admin.Username;
                     Session["Role"] = "Admin";
                     return RedirectToAction("Index", "Home", null);
                 }
