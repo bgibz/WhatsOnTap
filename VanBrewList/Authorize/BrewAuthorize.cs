@@ -19,5 +19,18 @@ namespace VanBrewList.Authorize
 
             return false;
         }
+
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            if (filterContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                base.HandleUnauthorizedRequest(filterContext);
+            }
+            else
+            {
+                filterContext.Result = new RedirectResult("~/Home/Error");
+            }
+
+        }
     }
 }

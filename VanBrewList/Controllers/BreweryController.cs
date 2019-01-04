@@ -65,6 +65,7 @@ namespace VanBrewList.Controllers
             {
                 brewery.Growlers = new List<Beer>();
                 brewery.TastingRoom = new List<Beer>();
+                brewery.LastUpdated = DateTime.Now;
                 mongoService.createBrewery(brewery);
                 
                 return RedirectToAction("Index");
@@ -76,7 +77,7 @@ namespace VanBrewList.Controllers
         }
 
         // GET: Brewery/Edit/id
-        [Authorize]
+        [BrewAuthorize]
         public ActionResult Edit(string id)
         {
             var brewery = mongoService.GetBrewery(id);
@@ -86,11 +87,12 @@ namespace VanBrewList.Controllers
 
         // POST: Brewery/Edit/id
         [HttpPost]
-        [Authorize]
+        [BrewAuthorize]
         public ActionResult Edit(string id, Brewery brewery)
         {
             try
             {
+                brewery.LastUpdated = DateTime.Now;
                 var result = mongoService.updateBrewery(id, brewery);
 
                 if (result.ModifiedCount > 0)

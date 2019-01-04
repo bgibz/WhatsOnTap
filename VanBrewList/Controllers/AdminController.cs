@@ -17,6 +17,12 @@ namespace VanBrewList.Controllers
         {
             this.mongoService = new MongoService();
         }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         // GET: Admin
         public ActionResult Login()
         {
