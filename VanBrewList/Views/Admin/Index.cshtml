@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+}
+
+<br />
+<div class="container">
+
+    <h2>Admin</h2>
+
+    <div class="col-md-offset-2 col-md-10">
+        @Html.ActionLink("Login", "Login", "Admin", null, new { @class = "btn btn-primary" })
+    </div>
+    <br />
+    <h4> Actions </h4>
+    <div class="col-md-offset-2 col-md-10">
+        @Html.ActionLink("New Brewery", "Create", "Brewery", null, new { @class = "btn btn-default" })
+    </div>
+    <div class="col-md-offset-2 col-md-10">
+        @Html.ActionLink("Delete Brewery", "Delete", "Admin", null, new { @class = "btn btn-default" })
+    </div>
+    <div class="col-md-offset-2 col-md-10">
+        @Html.ActionLink("Edit Brewery", "Edit", "Admin", null, new {  @class= "btn btn-default" })
+    </div>
+
+</div>
