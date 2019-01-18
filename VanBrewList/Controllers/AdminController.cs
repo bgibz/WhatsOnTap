@@ -20,7 +20,22 @@ namespace VanBrewList.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            AdminIndex viewModel = new AdminIndex();
+
+            var breweries = mongoService.GetBreweries();
+
+            List<SelectListItem> breweryList = new List<SelectListItem>();
+
+            foreach (Brewery brewery in breweries)
+            {
+                SelectListItem b = new SelectListItem() { Text = brewery.Name, Value = brewery._id.ToString() };
+                breweryList.Add(b);
+            }
+
+            viewModel.breweries = breweryList;
+
+
+            return View(viewModel);
         }
 
         // GET: Admin
