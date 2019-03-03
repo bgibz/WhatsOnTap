@@ -25,7 +25,6 @@ namespace VanBrewList.Models
         [Display(Name = "ABV")]
         public string Abv { get; set; }
 
-        [Required]
         [BsonElement("url")]
         public string Url { get; set; }
 

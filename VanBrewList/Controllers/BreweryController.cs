@@ -56,7 +56,7 @@ namespace VanBrewList.Controllers
         [BrewAuthorize]
         public ActionResult Create(Brewery brewery)
         {
-            if (!mongoService.checkBrewName(brewery.Name))
+            if (!mongoService.CheckBrewName(brewery.Name))
             {
                 TempData["Error"] = "Brewery already exists!";
                 return View();
@@ -66,7 +66,7 @@ namespace VanBrewList.Controllers
                 brewery.Growlers = new List<Beer>();
                 brewery.TastingRoom = new List<Beer>();
                 brewery.LastUpdated = DateTime.Now;
-                mongoService.createBrewery(brewery);
+                mongoService.CreateBrewery(brewery);
                 
                 return RedirectToAction("Index");
             }
@@ -93,7 +93,7 @@ namespace VanBrewList.Controllers
             try
             {
                 brewery.LastUpdated = DateTime.Now;
-                var result = mongoService.updateBrewery(id, brewery);
+                var result = mongoService.UpdateBrewery(id, brewery);
 
                 if (result.ModifiedCount > 0)
                 {
@@ -128,7 +128,7 @@ namespace VanBrewList.Controllers
         {
             try
             {
-                var result = mongoService.deleteBrewery(id);
+                var result = mongoService.DeleteBrewery(id);
 
                 if (result.DeletedCount > 0)
                 {
@@ -145,6 +145,25 @@ namespace VanBrewList.Controllers
             {
                 return View();
             }
+        }
+
+        // Get Brewery/NewBeer
+        [BrewAuthorize]
+        public ActionResult NewBeer(string id)
+        {
+            var brewery = mongoService.GetBrewery(id);
+
+            return View(brewery);
+        }
+
+        // Post Brewery/NewBeer
+        [BrewAuthorize]
+        public ActionResult NewBeer(string id, Beer beer) {
+            var brewery = mongoService.GetBrewery(id);
+
+            //TODO: Create new beer
+
+            return View(brewery);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using VanBrewList.Models;
+using VanBrewList.Models.ViewModels;
 using VanBrewList.Services;
 
 namespace VanBrewList.Controllers
@@ -23,7 +24,7 @@ namespace VanBrewList.Controllers
         // GET: Beer
         public ActionResult Growlers()
         {
-            var beers = mongoService.getGrowlers();
+            var beers = mongoService.GetGrowlers();
 
             return View(beers);
         }
@@ -31,7 +32,7 @@ namespace VanBrewList.Controllers
         // GET: Beer
         public ActionResult TastingRooms()
         {
-            var beers = mongoService.getTastingRooms();
+            var beers = mongoService.GetTastingRooms();
 
             return View(beers);
         }
@@ -45,16 +46,37 @@ namespace VanBrewList.Controllers
         // GET: Beer/Create
         public ActionResult Create()
         {
-            return View();
+            NewBeer viewModel = new NewBeer();
+
+            var breweries = mongoService.GetBreweries();
+
+            List<SelectListItem> breweryList = new List<SelectListItem>();
+
+            foreach (Brewery brewery in breweries)
+            {
+                SelectListItem b = new SelectListItem() { Text = brewery.Name, Value = brewery._id.ToString() };
+                breweryList.Add(b);
+            }
+
+            viewModel.breweries = breweryList;
+
+            return View(viewModel);
         }
 
         // POST: Beer/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(NewBeer beer)
         {
             try
             {
-                // TODO: Add insert logic here
+                Beer newBeer = new Beer();
+                newBeer.Name = beer.Name;
+                newBeer.Style = beer.Style;
+                newBeer.Abv = beer.Abv;
+                
+                // get brewery by ID
+
+                // Add beer to brewery
 
                 return RedirectToAction("Index");
             }

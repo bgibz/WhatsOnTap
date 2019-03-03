@@ -7,6 +7,7 @@ using System.Web;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using VanBrewList.Models;
+using VanBrewList.Models.ViewModels;
 
 namespace VanBrewList.Services
 {
@@ -21,7 +22,7 @@ namespace VanBrewList.Services
             this.db = client.GetDatabase("vanbrewalpha");
         }
 
-        public IMongoDatabase getContext()
+        public IMongoDatabase GetContext()
         {
             return this.db;
         }
@@ -48,7 +49,7 @@ namespace VanBrewList.Services
             return brewery;
         }
 
-        public ICollection<Beer> getGrowlers()
+        public ICollection<Beer> GetGrowlers()
         { 
             ICollection<Beer> beers = new List<Beer>();
             var collection = db.GetCollection<Brewery>("breweries");
@@ -66,7 +67,7 @@ namespace VanBrewList.Services
             return beers;
         }
 
-        public ICollection<Beer> getTastingRooms()
+        public ICollection<Beer> GetTastingRooms()
         {
             ICollection<Beer> beers = new List<Beer>();
             var collection = db.GetCollection<Brewery>("breweries");
@@ -83,7 +84,7 @@ namespace VanBrewList.Services
             return beers;
         }
 
-        public UpdateResult updateBrewery(string id, Brewery brewery)
+        public UpdateResult UpdateBrewery(string id, Brewery brewery)
         {
             var brewId = new ObjectId(id);
             var collection = db.GetCollection<Brewery>("breweries");
@@ -96,7 +97,7 @@ namespace VanBrewList.Services
             return collection.UpdateOne(filter, update);
         }
 
-        public bool checkBrewName(string name)
+        public bool CheckBrewName(string name)
         {
             var collection = db.GetCollection<Brewery>("breweries");
             var check = collection.Find(b => b.Name == name).FirstOrDefault();
@@ -105,13 +106,13 @@ namespace VanBrewList.Services
             return true;
         }
 
-        public void createBrewery(Brewery brewery)
+        public void CreateBrewery(Brewery brewery)
         {
             var collection = db.GetCollection<Brewery>("breweries");
             collection.InsertOne(brewery);
         }
 
-        public DeleteResult deleteBrewery(string id)
+        public DeleteResult DeleteBrewery(string id)
         {
             var brewId = new ObjectId(id);
             var collection = db.GetCollection<Brewery>("breweries");
@@ -119,6 +120,19 @@ namespace VanBrewList.Services
             var filter = Builders<Brewery>.Filter.Eq("_id", brewId);
             var delete = collection.DeleteOne(filter);
             return delete;
+        }
+
+        public void AddBeer(NewBeer beer)
+        {
+            var brewId = new ObjectId(beer.id);
+            var newName = beer.Name;
+            var newStyle = beer.Style;
+            var newAbv = beer.Abv;
+            var newUrl = null;
+            var collection = db.GetCollection<Brewery>("breweries");
+            var filter = Builders<Brewery>.Filter.Eq("_id", brewId);
+            var update = Builders<Brewery>.Update.AddToSet
+
         }
     }
 }
