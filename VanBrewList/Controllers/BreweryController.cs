@@ -8,6 +8,7 @@ using VanBrewList.Services;
 using VanBrewList.Authorize;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using VanBrewList.Models.ViewModels;
 
 namespace VanBrewList.Controllers
 {
@@ -158,11 +159,20 @@ namespace VanBrewList.Controllers
 
         // Post Brewery/NewBeer
         [BrewAuthorize]
-        public ActionResult NewBeer(string id, Beer beer) {
-            var brewery = mongoService.GetBrewery(id);
+        public ActionResult NewBeer(string id, NewBeer beer) {
+            beer.id = id;
 
-            //TODO: Create new beer
+            if (beer.Growler)
+            {
+                var result = mongoService.AddBeerGrowler(beer);
+            }
+            if (beer.TastingRoom)
+            {
+                var result = mongoService.AddBeerTastingRoom(beer);
+            }
 
+            Brewery brewery = mongoService.GetBrewery(id);
+            
             return View(brewery);
         }
     }

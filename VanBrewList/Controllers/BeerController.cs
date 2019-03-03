@@ -69,16 +69,18 @@ namespace VanBrewList.Controllers
         {
             try
             {
-                Beer newBeer = new Beer();
-                newBeer.Name = beer.Name;
-                newBeer.Style = beer.Style;
-                newBeer.Abv = beer.Abv;
-                
-                // get brewery by ID
+                if (beer.Growler)
+                {
+                    var result = mongoService.AddBeerGrowler(beer);
+                }
+                if (beer.TastingRoom)
+                {
+                    var result = mongoService.AddBeerTastingRoom(beer);
+                }
 
-                // Add beer to brewery
+                Brewery brewery = mongoService.GetBrewery(beer.id);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Brewery");
             }
             catch
             {

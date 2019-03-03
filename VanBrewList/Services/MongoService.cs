@@ -122,17 +122,42 @@ namespace VanBrewList.Services
             return delete;
         }
 
-        public void AddBeer(NewBeer beer)
+        public UpdateResult AddBeerGrowler(NewBeer beer)
         {
             var brewId = new ObjectId(beer.id);
             var newName = beer.Name;
             var newStyle = beer.Style;
             var newAbv = beer.Abv;
-            var newUrl = null;
             var collection = db.GetCollection<Brewery>("breweries");
             var filter = Builders<Brewery>.Filter.Eq("_id", brewId);
-            var update = Builders<Brewery>.Update.AddToSet
+            var update = Builders<Brewery>.Update.AddToSet("growlers", new Beer
+            {
+                Name = beer.Name,
+                Style = beer.Style,
+                Abv = beer.Abv,
+                Url = "",
 
+            });
+            return collection.UpdateOne(filter, update);
+        }
+
+        public UpdateResult AddBeerTastingRoom(NewBeer beer)
+        {
+            var brewId = new ObjectId(beer.id);
+            var newName = beer.Name;
+            var newStyle = beer.Style;
+            var newAbv = beer.Abv;
+            var collection = db.GetCollection<Brewery>("breweries");
+            var filter = Builders<Brewery>.Filter.Eq("_id", brewId);
+            var update = Builders<Brewery>.Update.AddToSet("tasting_room", new Beer
+            {
+                Name = beer.Name,
+                Style = beer.Style,
+                Abv = beer.Abv,
+                Url = "",
+
+            });
+            return collection.UpdateOne(filter, update);
         }
     }
 }
