@@ -11,15 +11,18 @@
 
     <br />
     <h4> Actions </h4>
-    <div class="col-md-offset-2 col-md-10">
-        <div class="col-sm-10">
-            @Html.ActionLink("New Brewery", "Create", "Brewery", null, new { @class = "btn btn-primary" })
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <div class="col-sm-6">
+                @Html.ActionLink("New Brewery", "Create", "Brewery", null, new { @class = "btn btn-primary btn-block" })
+            </div>
         </div>
     </div>
-
-    <div class="col-md-offset-2 col-md-10">
-        <div class="col-sm-10">
-            @Html.ActionLink("New Beer", "Create", "Beer", null, new { @class = "btn btn-primary" })
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <div class="col-sm-6">
+                @Html.ActionLink("New Beer", "Create", "Beer", null, new { @class = "btn btn-primary  btn-block" })
+            </div>
         </div>
     </div>
 
@@ -28,7 +31,9 @@
         <div class="form-horizontal">
             <div class="col-md-offset-2 col-md-10 form-group">
                 <div class="breweryDrop col-sm-6">
-                    <input type="submit" value="Delete" id="Submit" class="btn btn-primary" />
+                    <input type="submit" value="Delete" id="Submit" class="btn btn-primary btn-block" />
+                </div>
+                <div class="col-sm-4">
                     @Html.DropDownListFor(m => m.id, Model.breweries)
                 </div>
             </div>
@@ -40,7 +45,9 @@
         <div class="form-horizontal">
             <div class="col-md-offset-2 col-md-10 form-group">
                 <div class="breweryDrop col-sm-6">
-                    <input type="submit" value="Edit" id="Submit" class="btn btn-primary" />
+                    <input type="submit" value="Edit" id="Submit" class="btn btn-primary btn-block" />
+                </div>
+                <div class="col-sm-4">
                     @Html.DropDownListFor(m => m.breweries, Model.breweries)
                 </div>
             </div>

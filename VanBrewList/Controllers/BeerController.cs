@@ -67,6 +67,7 @@ namespace VanBrewList.Controllers
         [HttpPost]
         public ActionResult Create(NewBeer beer)
         {
+            //TODO: Handle both growler and tasting room select, figure out image thing.
             try
             {
                 if (beer.Growler)
