@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using VanBrewList.Authorize;
 using VanBrewList.Models;
 using VanBrewList.Models.ViewModels;
 using VanBrewList.Services;
@@ -44,6 +45,7 @@ namespace VanBrewList.Controllers
         }
 
         // GET: Beer/Create
+        [BrewAuthorize]
         public ActionResult Create()
         {
             NewBeer viewModel = new NewBeer();
@@ -65,6 +67,7 @@ namespace VanBrewList.Controllers
 
         // POST: Beer/Create
         [HttpPost]
+        [BrewAuthorize]
         public ActionResult Create(NewBeer beer)
         {
             //TODO: Handle both growler and tasting room select, figure out image thing.
