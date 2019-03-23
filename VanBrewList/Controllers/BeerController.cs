@@ -73,6 +73,11 @@ namespace VanBrewList.Controllers
             //TODO: Handle both growler and tasting room select, figure out image thing.
             try
             {
+                if (beer.Growler && beer.TastingRoom)
+                {
+                    var result1 = mongoService.AddBeerGrowler(beer);
+                    var result2 = mongoService.AddBeerTastingRoom(beer);
+                }
                 if (beer.Growler)
                 {
                     var result = mongoService.AddBeerGrowler(beer);
