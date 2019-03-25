@@ -9,13 +9,15 @@ using System.Web.Mvc;
 
 namespace VanBrewList.Models.ViewModels
 {
-    public class NewBeer
+    public class BeerView
     {
         [Required]
         public string Name { get; set; }
 
         [Required]
         public string Style { get; set; }
+
+        public string Url { get; set; }
 
         [Display(Name = "ABV")]
         public string Abv { get; set; }

@@ -159,7 +159,7 @@ namespace VanBrewList.Controllers
 
         // Post Brewery/NewBeer
         [BrewAuthorize]
-        public ActionResult NewBeer(string id, NewBeer beer) {
+        public ActionResult NewBeer(string id, BeerView beer) {
             beer.id = id;
 
             if (beer.Growler)

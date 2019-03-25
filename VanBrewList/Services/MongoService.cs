@@ -122,7 +122,7 @@ namespace VanBrewList.Services
             return delete;
         }
 
-        public UpdateResult AddBeerGrowler(NewBeer beer)
+        public UpdateResult AddBeerGrowler(BeerView beer)
         {
             var brewId = new ObjectId(beer.id);
             var newName = beer.Name;
@@ -132,16 +132,15 @@ namespace VanBrewList.Services
             var filter = Builders<Brewery>.Filter.Eq("_id", brewId);
             var update = Builders<Brewery>.Update.AddToSet("growlers", new Beer
             {
+                Url = "",
                 Name = beer.Name,
                 Style = beer.Style,
                 Abv = beer.Abv,
-                Url = "",
-
             });
             return collection.UpdateOne(filter, update);
         }
 
-        public UpdateResult AddBeerTastingRoom(NewBeer beer)
+        public UpdateResult AddBeerTastingRoom(BeerView beer)
         {
             var brewId = new ObjectId(beer.id);
             var newName = beer.Name;
@@ -151,11 +150,40 @@ namespace VanBrewList.Services
             var filter = Builders<Brewery>.Filter.Eq("_id", brewId);
             var update = Builders<Brewery>.Update.AddToSet("tasting_room", new Beer
             {
+                Url = "",
                 Name = beer.Name,
                 Style = beer.Style,
                 Abv = beer.Abv,
-                Url = "",
+            });
+            return collection.UpdateOne(filter, update);
+        }
 
+        public UpdateResult DeleteBeerGrowler(BeerView beer)
+        {
+            var breweryID = new ObjectId(beer.id);
+            var collection = db.GetCollection<Brewery>("breweries");
+            var filter = Builders<Brewery>.Filter.Eq("_id", breweryID);
+            var update = Builders<Brewery>.Update.Pull("growlers", new Beer
+            {
+                Url = beer.Url,
+                Name = beer.Name,
+                Style =beer.Style,
+                Abv = beer.Abv,
+            });
+            return collection.UpdateOne(filter, update);
+        }
+
+        public UpdateResult DeleteBeerTastingRoom(BeerView beer)
+        {
+            var breweryID = new ObjectId(beer.id);
+            var collection = db.GetCollection<Brewery>("breweries");
+            var filter = Builders<Brewery>.Filter.Eq("_id", breweryID);
+            var update = Builders<Brewery>.Update.Pull("growlers", new Beer
+            {
+                Url = beer.Url,
+                Name = beer.Name,
+                Style = beer.Style,
+                Abv = beer.Abv,
             });
             return collection.UpdateOne(filter, update);
         }

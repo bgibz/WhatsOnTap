@@ -48,7 +48,7 @@ namespace VanBrewList.Controllers
         [BrewAuthorize]
         public ActionResult Create()
         {
-            NewBeer viewModel = new NewBeer();
+            BeerView viewModel = new BeerView();
 
             var breweries = mongoService.GetBreweries();
 
@@ -68,9 +68,8 @@ namespace VanBrewList.Controllers
         // POST: Beer/Create
         [HttpPost]
         [BrewAuthorize]
-        public ActionResult Create(NewBeer beer)
+        public ActionResult Create(BeerView beer)
         {
-            //TODO: Handle both growler and tasting room select, figure out image thing.
             try
             {
                 if (beer.Growler && beer.TastingRoom)
@@ -78,11 +77,11 @@ namespace VanBrewList.Controllers
                     var result1 = mongoService.AddBeerGrowler(beer);
                     var result2 = mongoService.AddBeerTastingRoom(beer);
                 }
-                if (beer.Growler)
+                else if (beer.Growler)
                 {
                     var result = mongoService.AddBeerGrowler(beer);
                 }
-                if (beer.TastingRoom)
+                else if (beer.TastingRoom)
                 {
                     var result = mongoService.AddBeerTastingRoom(beer);
                 }
@@ -122,18 +121,35 @@ namespace VanBrewList.Controllers
         // GET: Beer/Delete/5
         public ActionResult Delete(int id)
         {
+            BeerView beer = new BeerView();
+
             return View();
         }
 
         // POST: Beer/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [BrewAuthorize]
+        public ActionResult Delete(BeerView beer)
         {
             try
             {
-                // TODO: Add delete logic here
+                if (beer.Growler && beer.TastingRoom)
+                {
+                    var result1 = mongoService.DeleteBeerGrowler(beer);
+                    var result2 = mongoService.DeleteBeerTastingRoom(beer);
+                }
+                else if (beer.Growler)
+                {
+                    var result = mongoService.DeleteBeerGrowler(beer);
+                }
+                else if (beer.TastingRoom)
+                {
+                    var result = mongoService.DeleteBeerTastingRoom(beer);
+                }
 
-                return RedirectToAction("Index");
+                Brewery brewery = mongoService.GetBrewery(beer.id);
+
+                return RedirectToAction("Index", "Brewery");
             }
             catch
             {
